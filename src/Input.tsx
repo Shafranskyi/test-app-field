@@ -31,7 +31,7 @@ const SuggestionsInput = () => {
     setInput,
     setSuggestions,
     calculateValues,
-  } = useStore((state) => ({
+  } = useStore((state: any) => ({
     input: state.input,
     suggestions: state.suggestions,
     calculatedValue: state.calculatedValue,
