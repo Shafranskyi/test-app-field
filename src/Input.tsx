@@ -17,7 +17,9 @@ const fetchItems = async () => {
     );
     return response.data; // Axios automatically handles converting the response to JSON
   } catch (error) {
-    throw new Error(error.response.data.message || "Error fetching data");
+    throw new Error(
+      (error as any).response.data.message || "Error fetching data"
+    );
   }
 };
 
@@ -91,12 +93,12 @@ const SuggestionsInput = () => {
       }
     } else if (event.key === "ArrowDown") {
       event.preventDefault();
-      setHighlightIndex((prev) =>
+      setHighlightIndex((prev: number) =>
         prev < suggestions.length - 1 ? prev + 1 : prev
       );
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
-      setHighlightIndex((prev) => (prev > 0 ? prev - 1 : 0));
+      setHighlightIndex((prev: number) => (prev > 0 ? prev - 1 : 0));
     } else if (event.key === "Backspace") {
       handleBackspace(event);
     } else if (event.key === "Delete") {
@@ -154,7 +156,7 @@ const SuggestionsInput = () => {
     }
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = (event: { key?: string; preventDefault: any }) => {
     event.preventDefault();
     const { selectionStart, selectionEnd } = inputRef.current;
     const hasSelection = selectionStart !== selectionEnd;
