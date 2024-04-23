@@ -8,7 +8,7 @@ export interface Category {
   id: string;
 }
 
-const useStore = create((set) => ({
+const useStore = create((set: any) => ({
   input: "",
   suggestions: [],
   calculatedValue: "",
